@@ -1,6 +1,24 @@
 # Push system log to papertrailapp.com
 #
 
+$ActionResumeInterval 10
+$ActionQueueSize 100000
+$ActionQueueDiscardMark 97500
+$ActionQueueHighWaterMark 80000
+$ActionQueueType LinkedList
+$ActionQueueFileName papertrailqueue
+$ActionQueueCheckpointInterval 100
+$ActionQueueMaxDiskSpace 2g
+$ActionResumeRetryCount -1
+$ActionQueueSaveOnShutdown on
+$ActionQueueTimeoutEnqueue 10
+$ActionQueueDiscardSeverity 0
+
+# json files can get quite big
+$MaxMessageSize 32k
+# rsyslog can be running without privileges to write into 
+$WorkDirectory /tmp
+
 $DefaultNetstreamDriverCAFile <%= @cert_file %> # trust these CAs
 $DefaultNetstreamDriver gtls # use gtls netstream driver
 $ActionSendStreamDriverMode 1 # require TLS
